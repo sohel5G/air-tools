@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 const CartPageCard = ({ product, setCartItems, cartItems }) => {
 
@@ -8,10 +9,13 @@ const CartPageCard = ({ product, setCartItems, cartItems }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                
                 if (data.deletedCount > 0) {
                     const remainingItem = cartItems.filter(item => item._id !== id);
                     setCartItems(remainingItem)
+                    toast.success(" Product removed from cart ", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
                 }
             })
     }

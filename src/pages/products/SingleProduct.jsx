@@ -1,10 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import { Rating } from "@material-tailwind/react";
+import { toast } from 'react-toastify';
 
 const SingleProduct = () => {
     const product = useLoaderData();
 
-    const { name, brand, type, price, ratting, productImgURL, description, _id:id } = product;
+    const { name, brand, type, price, ratting, productImgURL, description, _id: id } = product;
     const addedProduct = { name, brand, type, price, ratting, productImgURL, description, id }
 
     const handleAddToCart = () => {
@@ -17,14 +18,11 @@ const SingleProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // if (data.insertedId) {
-                //     swal({
-                //         title: "Coffee added!",
-                //         text: "coffee added successfully",
-                //         icon: "success",
-                //     });
-                // }
-                console.log(data);
+                if (data.insertedId) {
+                    toast.success("Product added to card", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                }
             })
     }
 
@@ -39,13 +37,13 @@ const SingleProduct = () => {
                     <p className="py-1"> <b>Brand</b> {brand} </p>
                     <p className="py-1"> <b>Type </b> {type} </p>
                     <p className="py-1"> <b>Price </b> {price} </p>
-                    <div className="py-1">  
-                        <Rating value={parseInt(ratting)} readonly /> 
+                    <div className="py-1">
+                        <Rating value={parseInt(ratting)} readonly />
                     </div>
                     <div>
                         <button onClick={handleAddToCart} className="bg-primaryColor text-white py-1 px-4 rounded-md my-3">Add to cart</button>
                     </div>
-                    <p className="py-1"> <b>Description </b> { description } </p>
+                    <p className="py-1"> <b>Description </b> {description} </p>
                 </div>
             </div>
         </div>

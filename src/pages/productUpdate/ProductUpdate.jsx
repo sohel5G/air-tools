@@ -1,5 +1,6 @@
 import { Input } from "@material-tailwind/react";
 import { useLoaderData } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const ProductUpdate = () => {
     const loadedproduct = useLoaderData();
@@ -29,14 +30,11 @@ const ProductUpdate = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // if (data.insertedId) {
-                //     swal({
-                //         title: "Coffee added!",
-                //         text: "coffee added successfully",
-                //         icon: "success",
-                //     });
-                // }
-                console.log(data);
+                if (data.modifiedCount > 0) {
+                    toast.success(" Product Update successfully ", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                }
             })
     }
 

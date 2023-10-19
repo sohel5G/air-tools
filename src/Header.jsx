@@ -45,6 +45,19 @@ function NavList() {
                 </ListItem>
             </NavLink>
             <NavLink
+                to={'/products'}
+                as="a"
+                href="#"
+                variant="small"
+                color="blue-gray"
+                className="font-medium"
+                
+            >
+                <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-primaryColor hover:text-white hover:bg-opacity-100 focus:bg-opacity-0 focus:text-white rounded-md">
+                   All Products
+                </ListItem>
+            </NavLink>
+            <NavLink
             to={'/contact'}
                 as="a"
                 href="#"
@@ -91,7 +104,7 @@ const Header = () => {
                         <div className="hidden gap-2 lg:flex">
                             <Link to={'/cart'}>
                                 <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
-                                    Cart Total
+                                    Cart Items
                                 </Button>
                             </Link>
                             <Link to={'/login'}>
@@ -122,7 +135,7 @@ const Header = () => {
                         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
                             <Link to={'/cart'}>
                                 <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md" fullWidth>
-                                    Cart Total
+                                    Cart Items
                                 </Button>
                             </Link>
                             <Link to={'/login'}>

@@ -1,4 +1,5 @@
 import { Input } from "@material-tailwind/react";
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
 
@@ -14,7 +15,7 @@ const AddProduct = () => {
         const productImgURL = form.productImgURL.value;
         const description = form.description.value;
 
-        const product = { name, brand, type, price, ratting, productImgURL, description};
+        const product = { name, brand, type, price, ratting, productImgURL, description };
 
 
         fetch('http://localhost:5000/products', {
@@ -26,18 +27,12 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // if (data.insertedId) {
-                //     swal({
-                //         title: "Coffee added!",
-                //         text: "coffee added successfully",
-                //         icon: "success",
-                //     });
-                // }
-                console.log(data);
+                if (data.insertedId) {
+                    toast.success(" Product added successfully ", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                }
             })
-
-
-        console.log(product);
     }
 
     return (
