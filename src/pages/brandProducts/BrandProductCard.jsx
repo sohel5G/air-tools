@@ -13,7 +13,9 @@ const BrandProductCard = ({ brandProduct }) => {
                         <img className="w-3/4" src={productImgURL} alt="" />
                     </div>
                     <div className="p-4 py-6">
-                        <h3 className="text-xl font-medium">{name}</h3>
+                        <Link to={`/product/${_id}`}> 
+                            <h3 className="text-xl font-medium hover:text-primaryColor">{name}</h3> 
+                        </Link>
                         <p className="py-1"> <b>Brand</b> {brand} </p>
                         <p className="py-1"> <b>Type </b> {type} </p>
                         <p className="py-1"> <b>Price </b> {price} </p>
