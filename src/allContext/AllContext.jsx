@@ -1,11 +1,13 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../authConfig/authConfig";
 
 export const allContext = createContext(null)
 
 const AllContext = ({children}) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     
     const userSignUp = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -19,7 +21,25 @@ const AllContext = ({children}) => {
     const userSignInWithPopup = (provider) => {
         return signInWithPopup(auth, provider)
     }
+    const userLogOut = () => {
+        return signOut(auth)
+    }
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, user => {
+            if (user) {
+                setUser(user);
+                return setLoading(false);
+            }
+            setUser(null)
+            return setLoading(false)
+        });
+
+        return () => {
+            unsubscribe();
+        }
+
+    }, []);
 
 
     
@@ -27,7 +47,11 @@ const AllContext = ({children}) => {
         userSignUp,
         userUpdateOnSignUp,
         userSignIn,
-        userSignInWithPopup   
+        userSignInWithPopup,
+        user,
+        loading,
+        setUser,
+        userLogOut
     }
     return (
         <>

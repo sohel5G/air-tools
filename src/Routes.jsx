@@ -12,6 +12,8 @@ import Products from "./pages/products/Products";
 import SignUp from "./pages/signUp/SignUp";
 import Login from "./pages/login/Login";
 import ContactPage from "./contactPage/ContactPage";
+import PrivateRoute from "./privateRoutes/PrivateRoute";
+import PrivateRouteLogin from "./privateRoutes/PrivateRouteLogin";
 
 const router = createBrowserRouter([
     {
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addproduct',
-                element: <AddProduct></AddProduct>
+                element: <PrivateRoute> <AddProduct></AddProduct> </PrivateRoute>
             },
             {
                 path: '/brand/:brandName',
@@ -35,17 +37,17 @@ const router = createBrowserRouter([
             },
             {
                 path: '/product/update/:id',
-                element: <ProductUpdate></ProductUpdate>,
+                element: <PrivateRoute> <ProductUpdate></ProductUpdate> </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
             },
             {
                 path: '/product/:id',
-                element: <SingleProduct></SingleProduct>,
+                element: <PrivateRoute> <SingleProduct></SingleProduct> </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
             },
             {
                 path: '/cart',
-                element: <CartPage></CartPage>,
+                element: <PrivateRoute> <CartPage></CartPage> </PrivateRoute>,
                 loader: () => fetch('http://localhost:5000/carditems')
             },
             {
@@ -55,11 +57,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/register',
-                element: <SignUp></SignUp>
+                element: <PrivateRouteLogin> <SignUp></SignUp> </PrivateRouteLogin>
             },
             {
                 path:'/login',
-                element: <Login></Login>
+                element: <PrivateRouteLogin> <Login></Login> </PrivateRouteLogin>
             },
             {
                 path: '/contact',

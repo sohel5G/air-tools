@@ -1,13 +1,13 @@
 /* eslint-disable no-useless-escape */
 import { Card, Input, Checkbox, Typography } from "@material-tailwind/react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { allContext } from "../../allContext/AllContext";
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
-
-    const { userSignUp, userUpdateOnSignUp } = useContext(allContext);
+    const navigate = useNavigate();
+    const { userSignUp, userUpdateOnSignUp, setUser } = useContext(allContext);
 
     const handleUserSignUp = event => {
         event.preventDefault()
@@ -33,12 +33,13 @@ const SignUp = () => {
                 userUpdateOnSignUp({ displayName: name, photoURL: phUrl })
                     .then(() => {
                         console.log('profile data set')
-                        // setUser({ displayName: name, photoURL: phUrl, email: email })
+                        setUser({ displayName: name, photoURL: phUrl, email: email })
 
                     }).catch((error) => {
                         console.log('profile data not set', error)
                     });
-                return toast.success(" Successfully registered ", { position: toast.POSITION.TOP_CENTER });
+                toast.success(" Successfully registered ", { position: toast.POSITION.TOP_CENTER });
+                navigate('/');
             })
             .catch((errData) => {
                 let err = errData.message;

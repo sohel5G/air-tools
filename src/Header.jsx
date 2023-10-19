@@ -1,10 +1,12 @@
-import React from "react";
-import { Navbar, Collapse, Button, IconButton, List, ListItem } from "@material-tailwind/react";
+import React, { useContext } from "react";
+import { Navbar, Collapse, Button, IconButton, List } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "./assets/img/logo.png"
+import { allContext } from "./allContext/AllContext";
 
 function NavList() {
+    
     return (
         <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
             <NavLink
@@ -16,9 +18,7 @@ function NavList() {
                 className="font-medium"
 
             >
-                <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-primaryColor hover:text-white hover:bg-opacity-100 focus:bg-opacity-0 focus:text-white rounded-md">
-                    Home
-                </ListItem>
+                <span className="rounded-md flex items-center justify-center py-2 px-4 hover:bg-primaryColor hover:text-white"> Home </span>
             </NavLink>
             <NavLink
                 to={'/addproduct'}
@@ -29,9 +29,7 @@ function NavList() {
                 className="font-medium"
 
             >
-                <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-primaryColor hover:text-white hover:bg-opacity-100 focus:bg-opacity-0 focus:text-white rounded-md">
-                    Add Product
-                </ListItem>
+                <span className="rounded-md flex items-center justify-center py-2 px-4 hover:bg-primaryColor hover:text-white"> Add Product </span>
             </NavLink>
             <NavLink
                 to={'/products'}
@@ -42,9 +40,7 @@ function NavList() {
                 className="font-medium"
 
             >
-                <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-primaryColor hover:text-white hover:bg-opacity-100 focus:bg-opacity-0 focus:text-white rounded-md">
-                    All Products
-                </ListItem>
+                <span className="rounded-md flex items-center justify-center py-2 px-4 hover:bg-primaryColor hover:text-white"> All Products </span>
             </NavLink>
             <NavLink
                 to={'/contact'}
@@ -54,9 +50,7 @@ function NavList() {
                 color="blue-gray"
                 className="font-medium"
             >
-                <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-primaryColor hover:text-white  hover:bg-opacity-100 focus:bg-opacity-0 focus:text-white rounded-md">
-                    Contact Us
-                </ListItem>
+                <span className="rounded-md flex items-center justify-center py-2 px-4 hover:bg-primaryColor hover:text-white"> Contact Us </span>
             </NavLink>
         </List>
     );
@@ -71,9 +65,17 @@ const Header = () => {
         );
     }, []);
 
+    const navigate = useNavigate()
+    const { user, userLogOut } = useContext(allContext);
 
-    // const user = null
-    const user = { displayName: 'Sohel Rana', photoURL: "https://i.ibb.co/CmTmXzS/weeding.png" }
+    const handleLogOut = () => {
+        userLogOut()
+            .then(() => {
+                navigate('/login')
+            }).catch(() => {
+
+            });
+    }
 
     return (
         <>
@@ -117,7 +119,7 @@ const Header = () => {
                                         <img src={user?.photoURL} alt="" className="w-10 h-10 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
                                         <div>
                                             <h2 className="text-black font-semibold text-sm leading-none"> {user?.displayName} </h2>
-                                            <button className="-mt-7 font-semibold pb-[2px] px-[2px] text-sm text-primaryColor border-b border-primaryColor">Log Out</button>
+                                                <button onClick={handleLogOut} className="-mt-7 font-semibold pb-[2px] px-[2px] text-sm text-primaryColor border-b border-primaryColor">Log Out</button>
                                         </div>
                                     </div>
                                 </>

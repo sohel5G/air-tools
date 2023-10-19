@@ -81,7 +81,7 @@ const Login = () => {
                         />
                     </div>
                     <div>
-                        <input type="submit" value="sign up" className="mt-6 bg-primaryColor text-white py-2 px-4 cursor-pointer w-full rounded" />
+                        <input type="submit" value="sign In" className="mt-6 bg-primaryColor text-white py-2 px-4 cursor-pointer w-full rounded" />
                     </div>
                     <Typography color="gray" className="mt-4 text-center font-normal">
                         Not have an account?{" "}

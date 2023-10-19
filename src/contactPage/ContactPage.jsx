@@ -4,7 +4,7 @@ const ContactPage = () => {
     return (
         <>
             <section>
-                <h1><h1 data-aos="flip-right" className="text-4xl font-medium text-center py-16"> Get a quote! </h1></h1>
+                <h1 data-aos="flip-right" className="text-4xl font-medium text-center py-16"> Get a quote! </h1>
             </section>
 
             <div className="flex items-center justify-center container mx-auto px-8 pb-16">
