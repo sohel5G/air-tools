@@ -7,8 +7,6 @@ const Home = () => {
 
     const brands = useLoaderData()
 
-    console.log(brands)
-
     return (
         <>
             <section>
@@ -19,13 +17,13 @@ const Home = () => {
                     <h1 className="text-5xl text-center font-semibold py-12">Our brand</h1>
                     <div>
                         {
-                            brands ? 
+                            brands.length > 0 ? 
                             <>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                                         {brands.map(brand => <BrandCard key={brand._id} brand={brand}></BrandCard>)}
                             </div>
                             </> :
-                            <> <p>No products available</p> </>
+                            <> <p>No Brand available</p> </>
                         }
                     </div>
                 </div>
