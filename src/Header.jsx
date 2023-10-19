@@ -1,19 +1,8 @@
 import React from "react";
-import {
-    Navbar,
-    Collapse,
-    Button,
-    IconButton,
-    List,
-    ListItem,
-} from "@material-tailwind/react";
-import {
-    Bars3Icon,
-    XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Navbar, Collapse, Button, IconButton, List, ListItem } from "@material-tailwind/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router-dom";
 import logo from "./assets/img/logo.png"
-
 
 function NavList() {
     return (
@@ -25,10 +14,10 @@ function NavList() {
                 variant="small"
                 color="blue-gray"
                 className="font-medium"
-                
+
             >
                 <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-primaryColor hover:text-white hover:bg-opacity-100 focus:bg-opacity-0 focus:text-white rounded-md">
-                   Home
+                    Home
                 </ListItem>
             </NavLink>
             <NavLink
@@ -38,10 +27,10 @@ function NavList() {
                 variant="small"
                 color="blue-gray"
                 className="font-medium"
-                
+
             >
                 <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-primaryColor hover:text-white hover:bg-opacity-100 focus:bg-opacity-0 focus:text-white rounded-md">
-                   Add Product
+                    Add Product
                 </ListItem>
             </NavLink>
             <NavLink
@@ -51,14 +40,14 @@ function NavList() {
                 variant="small"
                 color="blue-gray"
                 className="font-medium"
-                
+
             >
                 <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-primaryColor hover:text-white hover:bg-opacity-100 focus:bg-opacity-0 focus:text-white rounded-md">
-                   All Products
+                    All Products
                 </ListItem>
             </NavLink>
             <NavLink
-            to={'/contact'}
+                to={'/contact'}
                 as="a"
                 href="#"
                 variant="small"
@@ -74,15 +63,17 @@ function NavList() {
 }
 
 const Header = () => {
-
     const [openNav, setOpenNav] = React.useState(false);
-
     React.useEffect(() => {
         window.addEventListener(
             "resize",
             () => window.innerWidth >= 960 && setOpenNav(false),
         );
     }, []);
+
+
+    // const user = null
+    const user = { displayName: 'Sohel Rana', photoURL: "https://i.ibb.co/CmTmXzS/weeding.png" }
 
     return (
         <>
@@ -101,22 +92,36 @@ const Header = () => {
                         <div className="hidden lg:block">
                             <NavList />
                         </div>
-                        <div className="hidden gap-2 lg:flex">
+                        <div className="hidden gap-2 lg:flex lg:items-center">
                             <Link to={'/cart'}>
                                 <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
                                     Cart Items
                                 </Button>
                             </Link>
-                            <Link to={'/login'}>
-                                <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
-                                    Log In
-                                </Button>
-                            </Link>
-                            <Link to={'/register'}>  
-                                <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
-                                    Register
-                                </Button> 
-                            </Link>
+                            {
+                                !user ? 
+                                <>
+                                    <Link to={'/login'}>
+                                        <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
+                                            Log In
+                                        </Button>
+                                    </Link>
+                                    <Link to={'/register'}>
+                                        <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
+                                            Register
+                                        </Button>
+                                    </Link>
+                                </> :
+                                <>
+                                    <div className="flex gap-2 items-center">
+                                        <img src={user?.photoURL} alt="" className="w-10 h-10 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
+                                        <div>
+                                            <h2 className="text-black font-semibold text-sm leading-none"> {user?.displayName} </h2>
+                                            <button className="-mt-7 font-semibold pb-[2px] px-[2px] text-sm text-primaryColor border-b border-primaryColor">Log Out</button>
+                                        </div>
+                                    </div>
+                                </>
+                            }
                         </div>
                         <IconButton
                             variant="text"
@@ -138,16 +143,30 @@ const Header = () => {
                                     Cart Items
                                 </Button>
                             </Link>
-                            <Link to={'/login'}>
-                                <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md" fullWidth>
-                                    Log In
-                                </Button>
-                            </Link>
-                            <Link to={'/register'}>
-                                <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md" fullWidth>
-                                    Register
-                                </Button>
-                            </Link>
+                            {
+                                !user ?
+                                    <>
+                                        <Link to={'/login'}>
+                                            <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md" fullWidth>
+                                                Log In
+                                            </Button>
+                                        </Link>
+                                        <Link to={'/register'}>
+                                            <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md" fullWidth>
+                                                Register
+                                            </Button>
+                                        </Link>
+                                    </> :
+                                    <>
+                                        <div className="flex gap-2 items-center">
+                                            <img src={user?.photoURL} alt="" className="w-10 h-10 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
+                                            <div>
+                                                <h2 className="text-black font-semibold text-sm leading-none"> {user?.displayName} </h2>
+                                                <button className="-mt-7 font-semibold pb-[2px] px-[2px] text-sm text-primaryColor border-b border-primaryColor">Log Out</button>
+                                            </div>
+                                        </div>
+                                    </>
+                            }
                         </div>
                     </Collapse>
                 </Navbar>
