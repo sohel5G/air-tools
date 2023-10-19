@@ -19,7 +19,11 @@ const BrandProducts = () => {
                                     {brandProducts.map(brandProduct => <BrandProductCard key={brandProduct._id} brandProduct={brandProduct}></BrandProductCard>)}
                                 </div>
                             </> :
-                            <> <p>No products available for this brand</p> </>
+                            <> 
+                                <div className="flex justify-center items-center h-56">
+                                    <p>No products available for this brand</p>
+                                </div>
+                            </>
                     }
                 </div>
             </div>

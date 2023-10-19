@@ -4,9 +4,30 @@ import { Rating } from "@material-tailwind/react";
 const SingleProduct = () => {
     const product = useLoaderData();
 
-    const { name, brand, type, price, ratting, productImgURL, description } = product;
+    const { name, brand, type, price, ratting, productImgURL, description, _id:id } = product;
+    const addedProduct = { name, brand, type, price, ratting, productImgURL, description, id }
 
-    console.log(product)
+    const handleAddToCart = () => {
+        fetch('http://localhost:5000/carditems', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(addedProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // if (data.insertedId) {
+                //     swal({
+                //         title: "Coffee added!",
+                //         text: "coffee added successfully",
+                //         icon: "success",
+                //     });
+                // }
+                console.log(data);
+            })
+    }
+
     return (
         <div className="container px-8 mx-auto flex justify-center pt-4 pb-24">
             <div className="shadow-md rounded-sm max-w-3xl">
@@ -22,7 +43,7 @@ const SingleProduct = () => {
                         <Rating value={parseInt(ratting)} readonly /> 
                     </div>
                     <div>
-                        <button className="bg-primaryColor text-white py-1 px-4 rounded-md my-3">Add to cart</button>
+                        <button onClick={handleAddToCart} className="bg-primaryColor text-white py-1 px-4 rounded-md my-3">Add to cart</button>
                     </div>
                     <p className="py-1"> <b>Description </b> { description } </p>
                 </div>
