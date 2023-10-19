@@ -11,11 +11,10 @@ const AddProduct = () => {
         const type = form.type.value;
         const price = form.price.value;
         const ratting = form.ratting.value;
-        const brandImgURL = form.brandImgURL.value;
         const productImgURL = form.productImgURL.value;
         const description = form.description.value;
 
-        const product = { name, brand, type, price, ratting, brandImgURL, productImgURL, description};
+        const product = { name, brand, type, price, ratting, productImgURL, description};
 
 
         fetch('http://localhost:5000/products', {
@@ -47,7 +46,7 @@ const AddProduct = () => {
                 <h1 className="text-5xl py-6 text-center">Add product</h1>
                 <form onSubmit={handleAddProduct} className="py-12" action="">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                        <div className="w-full col-span-2">
+                        <div className="w-full lg:col-span-2">
                             <Input label="Product name" name="name" type="text" required />
                         </div>
                         <div className="w-full">
@@ -85,10 +84,7 @@ const AddProduct = () => {
                                 </label>
                             </div>
                         </div>
-                        <div className="w-full">
-                            <Input label="Brand Image URL" name="brandImgURL" type="url" required />
-                        </div>
-                        <div className="w-full">
+                        <div className="w-full lg:col-span-2">
                             <Input label="Product Image URL" name="productImgURL" type="url" required />
                         </div>
                     </div>
