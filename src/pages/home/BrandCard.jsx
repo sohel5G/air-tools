@@ -7,7 +7,7 @@ const BrandCard = ({ brand }) => {
 
     return (
         <>
-            <div className="shadow-md hover:shadow-lg rounded-sm divBorder">
+            <div className="shadow-md hover:shadow-lg rounded-sm p-4 divBorder">
                 <Link to={`/brand/${brandName}`}>
                     <img className="w-full" src={brandImgURL} alt="" />
                     <div>

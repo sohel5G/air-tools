@@ -1,87 +1,32 @@
-/* eslint-disable react/prop-types */
-import { useState } from "react"
-import { useKeenSlider } from "keen-slider/react"
-import "keen-slider/keen-slider.min.css"
-import "../../style.css"
-import banner1 from "../../assets/img/banner1.jpg"
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import banner1 from "../../assets/img/banner1.jpg";
+import banner2 from "../../assets/img/banner2.jpg";
+import banner3 from "../../assets/img/banner3.jpg";
 
 
 const Slider = () => {
 
-    const [currentSlide, setCurrentSlide] = useState(0)
-    const [loaded, setLoaded] = useState(false)
-    const [sliderRef, instanceRef] = useKeenSlider({
-        initial: 0,
-        slideChanged(slider) {
-            setCurrentSlide(slider.track.details.rel)
-        },
-        created() {
-            setLoaded(true)
-        },
-    })
 
     return (
         <>
-            <div className="navigation-wrapper">
-                <div ref={sliderRef} className="keen-slider">
-                    <div className="keen-slider__slide number-slide1" style={{ backgroundImage: banner1}}>
-                    <div className="number-slide-1">
-                        1jhsd fcbsid fcbsdi fjbhs fs
-                    </div>
-                    </div>
-                    <div className="keen-slider__slide number-slide2">
-                        2 sdvcshj gsu gdcak egfuwai fgsdu 
-                    </div>
-                    <div className="keen-slider__slide number-slide2">
-                        2 sdvcshj gsu gdcak egfuwai fgsdu 
-                    </div>
+            <Carousel showThumbs={false} useKeyboardArrows={true} showStatus={false} emulateTouch={true} autoPlay={false} infiniteLoop={true} className='homePageSlider'>
+                <div>
+                    <img src={banner1} alt="" />
+                    <h2 className='legend !text-xl md:!text-3xl !text-white !opacity-100 !bg-[#0000004f] !bottom-1/4 md:!bottom-2/4'>High-Quality Tools for Aviation Professionals</h2>  
                 </div>
-                {loaded && instanceRef.current && (
-                    <>
-                        <Arrow
-                            left
-                            onClick={(e) =>
-                                e.stopPropagation() || instanceRef.current?.prev()
-                            }
-                            disabled={currentSlide === 0}
-                        />
-
-                        <Arrow
-                            onClick={(e) =>
-                                e.stopPropagation() || instanceRef.current?.next()
-                            }
-                            disabled={
-                                currentSlide ===
-                                instanceRef.current.track.details.slides.length - 1
-                            }
-                        />
-                    </>
-                )}
-            </div>
+                <div>
+                    <img src={banner2} alt="" />
+                    <h2 className='legend !text-xl md:!text-3xl !text-white !opacity-100 !bg-[#0000004f] !bottom-1/4 md:!bottom-2/4'>Elevate Your Work with Precision Engineering Tools</h2>  
+                </div>
+                <div>
+                    <img src={banner3} alt="" />
+                    <h2 className='legend !text-xl md:!text-3xl !text-white !opacity-100 !bg-[#0000004f] !bottom-1/4 md:!bottom-2/4'>Your One-Stop Shop for Aircraft Maintenance Tools</h2>  
+                </div>
+            </Carousel>
         </>
     );
 };
 
 export default Slider;
-
-
-
-function Arrow(props) {
-    const disabeld = props.disabled ? " arrow--disabled" : ""
-    return (
-        <svg
-            onClick={props.onClick}
-            className={`arrow ${props.left ? "arrow--left" : "arrow--right"
-                } ${disabeld}`}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-        >
-            {props.left && (
-                <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-            )}
-            {!props.left && (
-                <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-            )}
-        </svg>
-    )
-}

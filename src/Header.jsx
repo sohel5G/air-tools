@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Navbar, Collapse, Button, IconButton, List } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "./assets/img/logo.png"
+import logo from "./assets/img/logo.png";
+import whitelogo from "./assets/img/whitelogo.png";
 import { allContext } from "./allContext/AllContext";
 import PropTypes from 'prop-types';
 import { MdDarkMode } from 'react-icons/md';
@@ -93,7 +94,10 @@ const Header = ({ switchTheme, theme }) => {
                             variant="h6"
                             className="mr-4 cursor-pointer py-1.5 lg:ml-2"
                         >
-                            <img className="w-56" src={logo} alt="Main Logo" />
+                            {theme === 'light' ? 
+                                <> <img className="w-56" src={logo} alt="Main Logo" /> </> : 
+                                <> <img className="w-56" src={whitelogo} alt="Main Logo" /> </>
+                            }
                         </Link>
                         <div className="hidden lg:block">
                             <NavList />
@@ -112,11 +116,11 @@ const Header = ({ switchTheme, theme }) => {
                                                 Log In
                                             </Button>
                                         </Link>
-                                        <Link to={'/register'}>
+                                        {/* <Link to={'/register'}>
                                             <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
                                                 Register
                                             </Button>
-                                        </Link>
+                                        </Link> */}
                                     </> :
                                     <>
                                         <div className="flex gap-2 items-center">
@@ -146,7 +150,7 @@ const Header = ({ switchTheme, theme }) => {
                     </div>
                     <Collapse open={openNav}>
                         <NavList />
-                        <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+                        <div className="flex w-full flex-nowrap items-center justify-center gap-2 lg:hidden">
                             <Link to={'/cart'}>
                                 <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md" fullWidth>
                                     Cart Items
@@ -160,11 +164,11 @@ const Header = ({ switchTheme, theme }) => {
                                                 Log In
                                             </Button>
                                         </Link>
-                                        <Link to={'/register'}>
+                                        {/* <Link to={'/register'}>
                                             <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md" fullWidth>
                                                 Register
                                             </Button>
-                                        </Link>
+                                        </Link> */}
                                     </> :
                                     <>
                                         <div className="flex gap-2 items-center">

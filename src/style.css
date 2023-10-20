@@ -1,3 +1,4 @@
+/* Dark theme css start */
 
 :root {
   --textColor: black;
@@ -14,7 +15,7 @@
   --textColor: white;
   --backgroundColor: black;
   --divBackgroundColor: black;
-  --divBorder:#ffffff69;
+  --divBorder: #ffffff69;
   --divBorderBottom: #ffffff69;
   --divBorderTop: #ffffff69;
   --themeSwitchBtnBorder: #ffffff;
@@ -26,28 +27,50 @@
   background: var(--backgroundColor);
   color: var(--textColor);
 }
-.divBackgroundColor{
+
+.divBackgroundColor {
   background-color: var(--divBackgroundColor);
 }
-.divBorder{
+
+.divBorder {
   border: 1px solid var(--divBorder);
 }
-.divBorderBottom{
+
+.divBorderBottom {
   border-bottom: 1px solid var(--divBorderBottom);
 }
+
 .divBorderTop {
   border-top: 1px solid var(--divBorderTop);
 }
-a, p, h1, h2, h3, h4, h5, h6, input, label, select, textarea{
-  color: var(--textColor)!important;
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+input,
+select,
+textarea {
+  color: var(--textColor) !important;
 }
-.themeSwitchBtn{
-  border:2px solid var(--themeSwitchBtnBorder);
+
+.themeSwitchBtn {
+  border: 2px solid var(--themeSwitchBtnBorder);
   height: 30px;
   width: 30px;
   color: var(--themeSwitchBtnColor);
   border-radius: 50%;
 }
+
+/* Dark theme css end */
+
+
+/* Top menu bar */
 
 .active {
   background-color: #C73A30 !important;
@@ -58,6 +81,43 @@ a, p, h1, h2, h3, h4, h5, h6, input, label, select, textarea{
 .banner {
   background-image: url('./assets/img/banner1.jpg');
 }
+
+/* Top meu bar end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 [class^="number-slide"],
