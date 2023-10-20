@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const CartPageCard = ({ product, setCartItems, cartItems }) => {
 
     const handleRemoveItem = id => {
-        fetch(`http://localhost:5000/carditems/${id}`, {
+        fetch(`https://aircraftengineersstore-backend-cnbayybtd.vercel.app/carditems/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
