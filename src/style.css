@@ -1,3 +1,33 @@
+
+:root {
+  --textColor: black;
+  --backgroundColor: white;
+  --titleColor: white;
+  --titleBackground: black;
+}
+
+[data-theme="dark"] {
+  --textColor: white;
+  --backgroundColor: black;
+  --titleColor: black;
+  --titleBackground: white;
+}
+
+
+.app {
+  background: var(--backgroundColor);
+  color: var(--textColor);
+}
+
+.titleColor {
+  background: var(--titleBackground);
+  color: var(--titleColor);
+}
+
+
+
+
+
 .active {
   background-color: #C73A30 !important;
   color: #ffffff !important;

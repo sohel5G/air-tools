@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "./assets/img/logo.png"
 import { allContext } from "./allContext/AllContext";
+import PropTypes from 'prop-types';
 
 function NavList() {
     
@@ -52,11 +53,12 @@ function NavList() {
             >
                 <span className="rounded-md flex items-center justify-center py-2 px-4 hover:bg-primaryColor hover:text-white"> Contact Us </span>
             </NavLink>
+            
         </List>
     );
 }
 
-const Header = () => {
+const Header = ({ switchTheme, theme }) => {
     const [openNav, setOpenNav] = React.useState(false);
     React.useEffect(() => {
         window.addEventListener(
@@ -124,6 +126,9 @@ const Header = () => {
                                     </div>
                                 </>
                             }
+                            <div>
+                                <button onClick={switchTheme}> {theme === 'light'?'dark':'light'} </button>
+                            </div>
                         </div>
                         <IconButton
                             variant="text"
@@ -169,6 +174,9 @@ const Header = () => {
                                         </div>
                                     </>
                             }
+                            <div>
+                                <button onClick={switchTheme}> {theme === 'light' ? 'dark' : 'light'} </button>
+                            </div>
                         </div>
                     </Collapse>
                 </Navbar>
@@ -179,3 +187,7 @@ const Header = () => {
 
 export default Header;
 
+Header.propTypes = {
+    switchTheme: PropTypes.func,
+    theme: PropTypes.string
+};

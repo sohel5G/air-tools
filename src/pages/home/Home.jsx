@@ -14,7 +14,7 @@ const Home = () => {
             </section>
             <section>
                 <div className="container mx-auto px-8 pb-24">
-                    <h1 className="text-5xl text-center font-semibold py-12">Our brand</h1>
+                    <h1 className="text-5xl text-center font-semibold py-12 titleColor">Our brand</h1>
                     <div>
                         {
                             brands.length > 0 ? 
