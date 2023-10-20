@@ -8,9 +8,9 @@ const BrandProductCard = ({ brandProduct }) => {
 
     return (
         <>
-            <div className="shadow-md hover:shadow-lg rounded-sm">
+            <div className="shadow-md hover:shadow-lg rounded-sm divBorder">
                     <div className="flex justify-center">
-                        <img className="w-3/4" src={productImgURL} alt="" />
+                        <img className="w-full p-4" src={productImgURL} alt="" />
                     </div>
                     <div className="p-4 py-6">
                         <Link to={`/product/${_id}`}> 

@@ -24,7 +24,7 @@ const currentYear = new Date().getFullYear();
 const Footer = () => {
     return (
         <>
-            <footer className="relative w-full bg-gray-100 border-t border-gray-300">
+            <footer className="relative w-full divBorderTop divBackgroundColor">
                 <div className="mx-auto container px-8">
                     <div className="mx-auto grid w-full grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-4">
                         {SITEMAP.map(({ title, links }, key) => (
@@ -49,7 +49,7 @@ const Footer = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="border-t border-blue-gray-50 py-9">
+                    <div className="py-9 divBorderTop">
                         <Typography
                             variant="small"
                             className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"

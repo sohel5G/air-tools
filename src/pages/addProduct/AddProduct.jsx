@@ -18,7 +18,7 @@ const AddProduct = () => {
         const product = { name, brand, type, price, ratting, productImgURL, description };
 
 
-        fetch('https://aircraftengineersstore-backend-cnbayybtd.vercel.app/products', {
+        fetch('http://localhost:5000/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

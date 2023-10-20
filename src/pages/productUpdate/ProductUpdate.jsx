@@ -21,7 +21,7 @@ const ProductUpdate = () => {
 
         const product = { name, brand, type, price, ratting, productImgURL, description };
 
-        fetch(`https://aircraftengineersstore-backend-cnbayybtd.vercel.app/products/${_id}`, {
+        fetch(`http://localhost:5000/products/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

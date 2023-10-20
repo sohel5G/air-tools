@@ -5,9 +5,11 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "./assets/img/logo.png"
 import { allContext } from "./allContext/AllContext";
 import PropTypes from 'prop-types';
+import { MdDarkMode } from 'react-icons/md';
+import { MdLightMode } from 'react-icons/md';
 
 function NavList() {
-    
+
     return (
         <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
             <NavLink
@@ -53,7 +55,7 @@ function NavList() {
             >
                 <span className="rounded-md flex items-center justify-center py-2 px-4 hover:bg-primaryColor hover:text-white"> Contact Us </span>
             </NavLink>
-            
+
         </List>
     );
 }
@@ -82,8 +84,8 @@ const Header = ({ switchTheme, theme }) => {
     return (
         <>
             <header>
-                <Navbar className="max-w-full px-8 py-3">
-                    <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+                <Navbar className="max-w-full px-8 py-3 divBackgroundColor rounded-none border-none divBorderBottom">
+                    <div className="container mx-auto flex items-center justify-between">
                         <Link
                             to={'/'}
                             as="a"
@@ -103,31 +105,31 @@ const Header = ({ switchTheme, theme }) => {
                                 </Button>
                             </Link>
                             {
-                                !user ? 
-                                <>
-                                    <Link to={'/login'}>
-                                        <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
-                                            Log In
-                                        </Button>
-                                    </Link>
-                                    <Link to={'/register'}>
-                                        <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
-                                            Register
-                                        </Button>
-                                    </Link>
-                                </> :
-                                <>
-                                    <div className="flex gap-2 items-center">
-                                        <img src={user?.photoURL} alt="" className="w-10 h-10 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
-                                        <div>
-                                            <h2 className="text-black font-semibold text-sm leading-none"> {user?.displayName} </h2>
+                                !user ?
+                                    <>
+                                        <Link to={'/login'}>
+                                            <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
+                                                Log In
+                                            </Button>
+                                        </Link>
+                                        <Link to={'/register'}>
+                                            <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
+                                                Register
+                                            </Button>
+                                        </Link>
+                                    </> :
+                                    <>
+                                        <div className="flex gap-2 items-center">
+                                            <img src={user?.photoURL} alt="" className="w-10 h-10 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
+                                            <div>
+                                                <h2 className="text-black font-semibold text-sm leading-none"> {user?.displayName} </h2>
                                                 <button onClick={handleLogOut} className="-mt-7 font-semibold pb-[2px] px-[2px] text-sm text-primaryColor border-b border-primaryColor">Log Out</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </>
+                                    </>
                             }
-                            <div>
-                                <button onClick={switchTheme}> {theme === 'light'?'dark':'light'} </button>
+                            <div className="ml-5">
+                                <button className="flex justify-center items-center themeSwitchBtn" onClick={switchTheme}> {theme === 'light' ? <> <MdDarkMode></MdDarkMode> </> : <> <MdLightMode></MdLightMode> </>} </button>
                             </div>
                         </div>
                         <IconButton
@@ -174,8 +176,8 @@ const Header = ({ switchTheme, theme }) => {
                                         </div>
                                     </>
                             }
-                            <div>
-                                <button onClick={switchTheme}> {theme === 'light' ? 'dark' : 'light'} </button>
+                            <div className="ml-5">
+                                <button className="flex justify-center items-center themeSwitchBtn" onClick={switchTheme}> {theme === 'light' ? <> <MdDarkMode></MdDarkMode> </> : <> <MdLightMode></MdLightMode> </>} </button>
                             </div>
                         </div>
                     </Collapse>

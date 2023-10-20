@@ -2,15 +2,23 @@
 :root {
   --textColor: black;
   --backgroundColor: white;
-  --titleColor: white;
-  --titleBackground: black;
+  --divBackgroundColor: #FAFAFA;
+  --divBorder: transparent;
+  --divBorderBottom: transparent;
+  --divBorderTop: #ECEFF1;
+  --themeSwitchBtnBorder: #000000;
+  --themeSwitchBtnColor: #000000;
 }
 
 [data-theme="dark"] {
   --textColor: white;
   --backgroundColor: black;
-  --titleColor: black;
-  --titleBackground: white;
+  --divBackgroundColor: black;
+  --divBorder:#ffffff69;
+  --divBorderBottom: #ffffff69;
+  --divBorderTop: #ffffff69;
+  --themeSwitchBtnBorder: #ffffff;
+  --themeSwitchBtnColor: #ffffff;
 }
 
 
@@ -18,15 +26,28 @@
   background: var(--backgroundColor);
   color: var(--textColor);
 }
-
-.titleColor {
-  background: var(--titleBackground);
-  color: var(--titleColor);
+.divBackgroundColor{
+  background-color: var(--divBackgroundColor);
 }
-
-
-
-
+.divBorder{
+  border: 1px solid var(--divBorder);
+}
+.divBorderBottom{
+  border-bottom: 1px solid var(--divBorderBottom);
+}
+.divBorderTop {
+  border-top: 1px solid var(--divBorderTop);
+}
+a, p, h1, h2, h3, h4, h5, h6, input, label, select, textarea{
+  color: var(--textColor)!important;
+}
+.themeSwitchBtn{
+  border:2px solid var(--themeSwitchBtnBorder);
+  height: 30px;
+  width: 30px;
+  color: var(--themeSwitchBtnColor);
+  border-radius: 50%;
+}
 
 .active {
   background-color: #C73A30 !important;

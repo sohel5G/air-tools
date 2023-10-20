@@ -9,7 +9,7 @@ const SingleProduct = () => {
     const addedProduct = { name, brand, type, price, ratting, productImgURL, description, id }
 
     const handleAddToCart = () => {
-        fetch('https://aircraftengineersstore-backend-cnbayybtd.vercel.app/carditems', {
+        fetch('http://localhost:5000/carditems', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
