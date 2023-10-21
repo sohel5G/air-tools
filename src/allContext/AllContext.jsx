@@ -5,10 +5,22 @@ import auth from "../authConfig/authConfig";
 
 export const allContext = createContext(null)
 
-const AllContext = ({children}) => {
+const AllContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    
+
+    // Cart page API
+    const [cartItems, setCartItems] = useState([])
+    const [cartItemAdded, setCartItemAdded ] = useState(null)
+    // Cart page API End
+
+
+
+
+
+
+
+
     const userSignUp = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
@@ -41,9 +53,19 @@ const AllContext = ({children}) => {
 
     }, []);
 
-
     
-    const allContexts = { 
+    // card page API call
+    useEffect(() => {
+        fetch('https://aircraftengineersstore-backend.vercel.app/carditems')
+            .then(res => res.json())
+            .then(loadedCartItems => setCartItems(loadedCartItems))
+    }, [cartItemAdded])
+    // card page API call End
+
+
+
+
+    const allContexts = {
         userSignUp,
         userUpdateOnSignUp,
         userSignIn,
@@ -51,7 +73,10 @@ const AllContext = ({children}) => {
         user,
         loading,
         setUser,
-        userLogOut
+        userLogOut,
+        cartItems,
+        setCartItems,
+        setCartItemAdded
     }
     return (
         <>

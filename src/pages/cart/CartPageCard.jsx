@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { toast } from 'react-toastify';
+import { allContext } from '../../allContext/AllContext';
 
-const CartPageCard = ({ product, setCartItems, cartItems }) => {
+const CartPageCard = ({ product, cartItems }) => {
+    const { setCartItems } = useContext(allContext);
 
     const handleRemoveItem = id => {
         fetch(`https://aircraftengineersstore-backend.vercel.app/carditems/${id}`, {
@@ -47,7 +50,6 @@ export default CartPageCard;
 
 CartPageCard.propTypes = {
     product: PropTypes.object,
-    setCartItems: PropTypes.func,
     cartItems: PropTypes.array
 };
 

@@ -1,9 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import { Rating } from "@material-tailwind/react";
 import { toast } from 'react-toastify';
+import { useContext } from "react";
+import { allContext } from "../../allContext/AllContext";
 
 const SingleProduct = () => {
     const product = useLoaderData();
+
+    const { setCartItemAdded } = useContext(allContext);
 
     const { name, brand, type, price, ratting, productImgURL, description, _id: id } = product;
     const addedProduct = { name, brand, type, price, ratting, productImgURL, description, id }
@@ -22,6 +26,8 @@ const SingleProduct = () => {
                     toast.success("Product added to card", {
                         position: toast.POSITION.TOP_CENTER
                     });
+                    console.log(data);
+                    setCartItemAdded(data.insertedId)
                 }
             })
     }

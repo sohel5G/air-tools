@@ -47,8 +47,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/cart',
-                element: <PrivateRoute> <CartPage></CartPage> </PrivateRoute>,
-                loader: () => fetch('https://aircraftengineersstore-backend.vercel.app/carditems')
+                element: <PrivateRoute> <CartPage></CartPage> </PrivateRoute>
+                // loader: () => fetch('https://aircraftengineersstore-backend.vercel.app/carditems')
             },
             {
                 path: '/products',

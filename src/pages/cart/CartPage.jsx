@@ -1,11 +1,15 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link} from "react-router-dom";
 import CartPageCard from "./cartPageCard";
-import { useState } from "react";
-
+import { useContext} from "react";
+import { allContext } from "../../allContext/AllContext";
 
 const CartPage = () => {
-    const loadedCartItems = useLoaderData()
-    const [cartItems, setCartItems] = useState(loadedCartItems)
+    // const loadedCartItems = useLoaderData()
+    // const [cartItems, setCartItems] = useState(loadedCartItems)
+
+    const { cartItems} = useContext(allContext);
+
+    console.log(cartItems)
 
     return (
         <>
@@ -36,14 +40,14 @@ const CartPage = () => {
                         cartItems.length > 0 ? 
                         <>
                             {
-                                cartItems.map(product => <CartPageCard key={product._id} product={product} setCartItems={setCartItems} cartItems={cartItems}></CartPageCard>)
+                                cartItems.map(product => <CartPageCard key={product._id} product={product} cartItems={cartItems}></CartPageCard>)
                             }
                         </> :
                         <>
                             <div className="flex justify-center items-center h-44 text-center">
                                 <div>
                                     <h1 className="py-7 text-3xl"> Your cart is empty  </h1>
-                                    <Link to={'/'}> <button className="py-2 px-4 bg-primaryColor text-white rounded-md"> Continue Shopping </button> </Link>
+                                        <Link to={'/products'}> <button className="py-2 px-4 bg-primaryColor text-white rounded-md"> Continue Shopping </button> </Link>
                                 </div>
                             </div>
                         </>

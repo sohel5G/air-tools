@@ -98,7 +98,7 @@ const AddProduct = () => {
                         </div>
                     </div>
                     <div className="w-full mt-5">
-                        <input type="submit" value="Add product" className="py-2 px-4 bg-primaryColor text-white rounded-md cursor-pointer" />
+                        <input type="submit" value="Add product" className="py-2 px-4 bg-primaryColor !text-white rounded-md cursor-pointer" />
                     </div>
                 </form>
             </div>

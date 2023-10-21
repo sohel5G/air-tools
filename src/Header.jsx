@@ -8,6 +8,7 @@ import { allContext } from "./allContext/AllContext";
 import PropTypes from 'prop-types';
 import { MdDarkMode } from 'react-icons/md';
 import { MdLightMode } from 'react-icons/md';
+import CartWidget from "./pages/cart/CartWidget";
 
 function NavList() {
 
@@ -94,8 +95,8 @@ const Header = ({ switchTheme, theme }) => {
                             variant="h6"
                             className="mr-4 cursor-pointer py-1.5 lg:ml-2"
                         >
-                            {theme === 'light' ? 
-                                <> <img className="w-56" src={logo} alt="Main Logo" /> </> : 
+                            {theme === 'light' ?
+                                <> <img className="w-56" src={logo} alt="Main Logo" /> </> :
                                 <> <img className="w-56" src={whitelogo} alt="Main Logo" /> </>
                             }
                         </Link>
@@ -104,9 +105,7 @@ const Header = ({ switchTheme, theme }) => {
                         </div>
                         <div className="hidden gap-2 lg:flex lg:items-center">
                             <Link to={'/cart'}>
-                                <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md">
-                                    Cart Items
-                                </Button>
+                                <CartWidget></CartWidget>
                             </Link>
                             {
                                 !user ?
@@ -152,9 +151,7 @@ const Header = ({ switchTheme, theme }) => {
                         <NavList />
                         <div className="flex w-full flex-nowrap items-center justify-center gap-2 lg:hidden">
                             <Link to={'/cart'}>
-                                <Button variant="text" size="sm" className="bg-primaryColor text-white hover:text-white hover:bg-primaryColor rounded-md" fullWidth>
-                                    Cart Items
-                                </Button>
+                                <CartWidget></CartWidget>
                             </Link>
                             {
                                 !user ?

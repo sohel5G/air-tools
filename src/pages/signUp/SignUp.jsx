@@ -107,7 +107,7 @@ const SignUp = () => {
                         </Typography>
                         <Input
                             name="password"
-                            type="text"
+                            type="password"
                             size="lg"
                             placeholder="********"
                             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
