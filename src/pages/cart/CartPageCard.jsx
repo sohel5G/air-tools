@@ -9,7 +9,7 @@ const CartPageCard = ({ product, cartItems }) => {
     const userId = user?.uid;
 
     const handleRemoveItem = (userId, productid) => {
-        fetch(`http://localhost:5000/carditems/${userId}?productid=${productid}`, {
+        fetch(`https://aircraftengineersstore-backend.vercel.app/carditems/${userId}?productid=${productid}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

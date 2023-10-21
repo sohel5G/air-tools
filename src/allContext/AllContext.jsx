@@ -58,8 +58,8 @@ const AllContext = ({ children }) => {
     // card page API call
     const userId = user?.uid;
     useEffect(() => {
-        
-        fetch(`http://localhost:5000/carditems/${userId}`)
+
+        fetch(`https://aircraftengineersstore-backend.vercel.app/carditems/${userId}`)
             .then(res => res.json())
             .then(loadedCartItems => setCartItems(loadedCartItems))
 
