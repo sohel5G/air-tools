@@ -18,7 +18,7 @@ const BrandProductCard = ({ brandProduct }) => {
                         </Link>
                         <p className="py-1"> <b>Brand</b> {brand} </p>
                         <p className="py-1"> <b>Type </b> {type} </p>
-                        <p className="py-1"> <b>Price </b> {price} </p>
+                        <p className="py-1"> <b>Price </b><span>$</span>{price} </p>
                     <div className="py-1">  <Rating value={parseInt(ratting)} readonly /> </div>
                        
                         <Link to={`/product/${_id}`}> <button className="bg-primaryColor text-white py-1 px-4 rounded-md my-3">View details</button> </Link>

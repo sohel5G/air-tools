@@ -31,6 +31,7 @@ const AddProduct = () => {
                     toast.success(" Product added successfully ", {
                         position: toast.POSITION.TOP_CENTER
                     });
+                    form.reset();
                 }
             })
     }

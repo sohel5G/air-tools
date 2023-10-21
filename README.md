@@ -1,8 +1,18 @@
-# React + Vite
+# Aircraft Engineers Tools
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live link > [https://aircraftengineersstore.web.app/](https://aircraftengineersstore.web.app/)
 
-Currently, two official plugins are available:
+## Some great feature of this online store : 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-- Add new products
+-- Updated products 
+-- Add to cart (add to cart is fully functional)
+-- registration page with validation 
+-- Login page with validation 
+-- Login with google 
+-- If user not login, then can not see product details
+-- All the brand showing on front page
+-- When click on brand item it show all of this brand products
+-- If user not login, then can not add products to cart
+-- If user not login, then can not add new product
+-- If user not login, then can not update existing product
