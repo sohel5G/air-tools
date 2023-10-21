@@ -6,6 +6,11 @@ const CartWidget = () => {
 
     const { cartItems } = useContext(allContext);
 
+    let sum = 0;
+    cartItems.forEach(item => {
+        sum += parseInt(item.price);
+    });
+
     return (
         <>
             <div className='flex justify-center items-center gap-2 px-3'>
@@ -16,7 +21,7 @@ const CartWidget = () => {
                     <span className='text-xs font-medium absolute -top-3 -right-2 !text-white bg-primaryColor flex justify-center items-center w-5 h-5 rounded-full'>{cartItems.length}</span>
                 </div>
                 <div>
-                    <p className='text-base font-medium'> <span>$</span>230</p>
+                    <p className='text-base font-medium'> <span>$</span>{cartItems.length <= 0 ? '00' : sum } </p>
                 </div>
             </div>
         </>
