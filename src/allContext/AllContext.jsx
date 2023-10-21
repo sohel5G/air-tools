@@ -11,7 +11,8 @@ const AllContext = ({ children }) => {
 
     // Cart page API
     const [cartItems, setCartItems] = useState([])
-    const [cartItemAdded, setCartItemAdded ] = useState(null)
+    const [cartItemAdded, setCartItemAdded] = useState(null)
+    const [handleRemoveItem, setHandleRemoveItem] = useState(null)
     // Cart page API End
 
 
@@ -53,13 +54,16 @@ const AllContext = ({ children }) => {
 
     }, []);
 
-    
+
     // card page API call
+    const userId = user?.uid;
     useEffect(() => {
-        fetch('https://aircraftengineersstore-backend.vercel.app/carditems')
+        
+        fetch(`http://localhost:5000/carditems/${userId}`)
             .then(res => res.json())
             .then(loadedCartItems => setCartItems(loadedCartItems))
-    }, [cartItemAdded])
+
+    }, [cartItemAdded, userId, handleRemoveItem])
     // card page API call End
 
 
@@ -76,7 +80,8 @@ const AllContext = ({ children }) => {
         userLogOut,
         cartItems,
         setCartItems,
-        setCartItemAdded
+        setCartItemAdded,
+        setHandleRemoveItem
     }
     return (
         <>

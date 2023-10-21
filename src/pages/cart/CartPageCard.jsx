@@ -4,21 +4,24 @@ import { toast } from 'react-toastify';
 import { allContext } from '../../allContext/AllContext';
 
 const CartPageCard = ({ product, cartItems }) => {
-    const { setCartItems } = useContext(allContext);
+    const { setCartItems, user, setHandleRemoveItem } = useContext(allContext);
 
-    const handleRemoveItem = id => {
-        fetch(`https://aircraftengineersstore-backend.vercel.app/carditems/${id}`, {
+    const userId = user?.uid;
+
+    const handleRemoveItem = (userId, productid) => {
+        fetch(`http://localhost:5000/carditems/${userId}?productid=${productid}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
             .then(data => {
                 
                 if (data.deletedCount > 0) {
-                    const remainingItem = cartItems.filter(item => item._id !== id);
+                    const remainingItem = cartItems.filter(item => item._id !== userId);
                     setCartItems(remainingItem)
                     toast.success(" Product removed from cart ", {
                         position: toast.POSITION.TOP_CENTER
                     });
+                    setHandleRemoveItem(productid)
                 }
             })
     }
@@ -39,7 +42,7 @@ const CartPageCard = ({ product, cartItems }) => {
                     <h1>{product.price}</h1>
                 </div>
                 <div className="text-center px-2 py-3 flex justify-center items-center">
-                    <h1><button onClick={() => handleRemoveItem(product._id)} className="py-2 px-5 rounded-full text-primaryColor">X</button></h1>
+                    <h1><button onClick={() => handleRemoveItem(userId, product._id)} className="py-2 px-5 rounded-full text-primaryColor">X</button></h1>
                 </div>
            </div>
         </>

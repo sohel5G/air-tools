@@ -28,12 +28,13 @@ const SignUp = () => {
         }
 
         userSignUp(email, password)
-            .then(() => {
+            .then((succData) => {
 
                 userUpdateOnSignUp({ displayName: name, photoURL: phUrl })
                     .then(() => {
+                        
+                        setUser({ displayName: name, photoURL: phUrl, email: email, uid: succData.user.uid });
                         console.log('profile data set')
-                        setUser({ displayName: name, photoURL: phUrl, email: email })
 
                     }).catch((error) => {
                         console.log('profile data not set', error)

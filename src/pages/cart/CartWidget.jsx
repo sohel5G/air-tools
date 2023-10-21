@@ -13,7 +13,7 @@ const CartWidget = () => {
                     <div className='text-xl font-medium h-7 w-9 rounded-full flex justify-center items-center'>
                         <FiShoppingCart></FiShoppingCart>
                     </div>
-                    <span className='text-lg font-medium absolute -top-4 right-0 text-primaryColor'>{cartItems.length}</span>
+                    <span className='text-xs font-medium absolute -top-3 -right-2 !text-white bg-primaryColor flex justify-center items-center w-5 h-5 rounded-full'>{cartItems.length}</span>
                 </div>
                 <div>
                     <p className='text-base font-medium'> <span>$</span>230</p>

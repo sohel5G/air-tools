@@ -4,12 +4,8 @@ import { useContext} from "react";
 import { allContext } from "../../allContext/AllContext";
 
 const CartPage = () => {
-    // const loadedCartItems = useLoaderData()
-    // const [cartItems, setCartItems] = useState(loadedCartItems)
 
     const { cartItems} = useContext(allContext);
-
-    console.log(cartItems)
 
     return (
         <>
