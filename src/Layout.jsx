@@ -22,8 +22,8 @@ const Layout = () => {
                 <div className="app">
                     <Header switchTheme={switchTheme} theme={theme}></Header>
                     <Outlet></Outlet>
-                    <Footer></Footer>
-                    < ToastContainer></ToastContainer>
+                    <Footer theme={theme}></Footer>
+                    <ToastContainer></ToastContainer>
 
                 </div>
             </div>
