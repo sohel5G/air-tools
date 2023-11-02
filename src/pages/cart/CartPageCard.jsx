@@ -9,12 +9,12 @@ const CartPageCard = ({ product, cartItems }) => {
     const userId = user?.uid;
 
     const handleRemoveItem = (userId, productid) => {
-        fetch(`https://aircraftengineersstore-backend.vercel.app/carditems/${userId}?productid=${productid}`, {
+        fetch(`http://localhost:5000/carditems/${userId}?productid=${productid}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
             .then(data => {
-                
+
                 if (data.deletedCount > 0) {
                     const remainingItem = cartItems.filter(item => item._id !== userId);
                     setCartItems(remainingItem)
@@ -28,7 +28,7 @@ const CartPageCard = ({ product, cartItems }) => {
 
     return (
         <>
-           <div className="flex border px-3">
+            <div className="flex border px-3">
                 <div className="text-center px-2 py-3 flex justify-center items-center">
                     <img className="w-20" src={product.productImgURL} alt="" />
                 </div>
@@ -44,7 +44,7 @@ const CartPageCard = ({ product, cartItems }) => {
                 <div className="text-center px-2 py-3 flex justify-center items-center">
                     <h1><button onClick={() => handleRemoveItem(userId, product._id)} className="py-2 px-5 rounded-full text-primaryColor">X</button></h1>
                 </div>
-           </div>
+            </div>
         </>
     )
 };

@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
     const { user, loading } = useContext(allContext);
 
     if (loading) {
-        return ' '
+        return <p className="text-8xl text-center py-32">Loading...</p>
     }
 
     return (

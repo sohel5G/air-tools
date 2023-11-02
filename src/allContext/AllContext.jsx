@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../authConfig/authConfig";
+import axios from "axios";
 
 export const allContext = createContext(null)
 
@@ -9,13 +10,11 @@ const AllContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Cart page API
+    // Cart page API States
     const [cartItems, setCartItems] = useState([])
     const [cartItemAdded, setCartItemAdded] = useState(null)
     const [handleRemoveItem, setHandleRemoveItem] = useState(null)
-    // Cart page API End
-
-
+    // Cart page API States End
 
 
 
@@ -39,13 +38,25 @@ const AllContext = ({ children }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, user => {
-            if (user) {
-                setUser(user);
-                return setLoading(false);
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+            setLoading(false);
+
+            const userEmail = currentUser?.email || user?.email;
+            // set a token for this user 
+            if (currentUser) {
+                axios.post('http://localhost:5000/jwt', { email: userEmail }, { withCredentials: true })
+                    .then(res => {
+                        console.log('Token set : ', res.data)
+                    })
+            }// set a token for this user end
+            else {
+                axios.post('http://localhost:5000/logout', { email: userEmail }, { withCredentials: true })
+                    .then(res => {
+                        console.log('Token removed', res.data)
+                    })
             }
-            setUser(null)
-            return setLoading(false)
+
         });
 
         return () => {
@@ -59,7 +70,7 @@ const AllContext = ({ children }) => {
     const userId = user?.uid;
     useEffect(() => {
 
-        fetch(`https://aircraftengineersstore-backend.vercel.app/carditems/${userId}`)
+        fetch(`http://localhost:5000/carditems/${userId}`)
             .then(res => res.json())
             .then(loadedCartItems => setCartItems(loadedCartItems))
 
