@@ -6,17 +6,17 @@ import { allContext } from '../../allContext/AllContext';
 const CartPageCard = ({ product, cartItems }) => {
     const { setCartItems, user, setHandleRemoveItem } = useContext(allContext);
 
-    const userId = user?.uid;
+    const userEmail = user?.email;
 
-    const handleRemoveItem = (userId, productid) => {
-        fetch(`http://localhost:5000/carditems/${userId}?productid=${productid}`, {
+    const handleRemoveItem = (userEmail, productid) => {
+        fetch(`http://localhost:5000/carditems/${userEmail}?productid=${productid}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
             .then(data => {
 
                 if (data.deletedCount > 0) {
-                    const remainingItem = cartItems.filter(item => item._id !== userId);
+                    const remainingItem = cartItems.filter(item => item._id !== userEmail);
                     setCartItems(remainingItem)
                     toast.success(" Product removed from cart ", {
                         position: toast.POSITION.TOP_CENTER
@@ -42,7 +42,7 @@ const CartPageCard = ({ product, cartItems }) => {
                     <h1>{product.price}</h1>
                 </div>
                 <div className="text-center px-2 py-3 flex justify-center items-center">
-                    <h1><button onClick={() => handleRemoveItem(userId, product._id)} className="py-2 px-5 rounded-full text-primaryColor">X</button></h1>
+                    <h1><button onClick={() => handleRemoveItem(userEmail, product._id)} className="py-2 px-5 rounded-full text-primaryColor">X</button></h1>
                 </div>
             </div>
         </>

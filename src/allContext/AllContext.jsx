@@ -37,10 +37,12 @@ const AllContext = ({ children }) => {
         return signOut(auth)
     }
 
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
+            console.log('Current User Email', currentUser?.email)
 
             const userEmail = currentUser?.email || user?.email;
             // set a token for this user 
@@ -50,13 +52,13 @@ const AllContext = ({ children }) => {
                         console.log('Token set : ', res.data)
                     })
             }// set a token for this user end
+            //remove token if user logout
             else {
                 axios.post('http://localhost:5000/logout', { email: userEmail }, { withCredentials: true })
                     .then(res => {
                         console.log('Token removed', res.data)
                     })
-            }
-
+            }//remove token if user logout end
         });
 
         return () => {
@@ -67,14 +69,14 @@ const AllContext = ({ children }) => {
 
 
     // card page API call
-    const userId = user?.uid;
+    const userEmail = user?.email;
     useEffect(() => {
 
-        fetch(`http://localhost:5000/carditems/${userId}`)
+        fetch(`http://localhost:5000/carditems/${userEmail}`, { credentials: 'include' })
             .then(res => res.json())
             .then(loadedCartItems => setCartItems(loadedCartItems))
 
-    }, [cartItemAdded, userId, handleRemoveItem])
+    }, [cartItemAdded, handleRemoveItem, userEmail])
     // card page API call End
 
 

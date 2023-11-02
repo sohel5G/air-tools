@@ -1,4 +1,3 @@
-### Aircraft Engineers Tools
 
 Live link > [https://air-tools-coderloft.web.app/](https://air-tools-coderloft.web.app/)
 
@@ -18,7 +17,7 @@ Live link > [https://air-tools-coderloft.web.app/](https://air-tools-coderloft.w
 - If user not login, then can not update existing product
 
 
-### API secure
+### API 
 
 - every person get a access token 
 - every person get a refresh token 
@@ -107,3 +106,43 @@ else {
 }
 // // Remove cookie from browser if user logout end
 ```
+
+
+# For secure API making
+
+- Server side Install cookie parser and use it as a middlewares
+- So that you will get cookie info from the browser to server using (req.cookies)
+- Client side make API call using axios withCredentials:true (or if use fetch then use credentials:include)
+
+
+#### Steps 1 (Server side)
+```JavaScript
+// make API secure and verify the token
+var cookieParser = require('cookie-parser')
+app.use(cookieParser())
+
+
+
+// My Custom made middleware
+const verifyToken = (req, res, next) => {
+    const token = req?.cookies?.token;
+
+    if (!token) {
+        return res.status(401).send({ message: 'unauthorized access' });
+    }
+
+    jwt.verify(token, process.env.SECRET_TOKEN, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({ message: 'unauthorized access' });
+        }
+        req.user = decoded;
+        next()
+    })
+}
+// My Custom made middleware end
+
+
+
+// make API secure and verify the token end
+```
+

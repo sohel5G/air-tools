@@ -9,13 +9,13 @@ const SingleProduct = () => {
 
     const { setCartItemAdded, user } = useContext(allContext);
 
-    const userId = user?.uid;
+    const userEmail = user?.email;
 
     const { name, brand, type, price, ratting, productImgURL, description, _id: id } = product;
-    const addedProduct = { name, brand, type, price, ratting, productImgURL, description, id, userId }
+    const addedProduct = { name, brand, type, price, ratting, productImgURL, description, id, userEmail }
 
-    const handleAddToCart = userId => {
-        fetch(`http://localhost:5000/carditems/${userId}`, {
+    const handleAddToCart = userEmail => {
+        fetch(`http://localhost:5000/carditems/${userEmail}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ const SingleProduct = () => {
                         <Rating value={parseInt(ratting)} readonly />
                     </div>
                     <div>
-                        <button onClick={() => handleAddToCart(userId)} className="bg-primaryColor text-white py-1 px-4 rounded-md my-3">Add to cart</button>
+                        <button onClick={() => handleAddToCart(userEmail)} className="bg-primaryColor text-white py-1 px-4 rounded-md my-3">Add to cart</button>
                     </div>
                     <p className="py-1"> <b>Description </b> {description} </p>
                 </div>
