@@ -2,15 +2,14 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../authConfig/authConfig";
-import useAxiosSecure from "../hooks/useAxiosSecure";
+import axios from "axios";
 
-export const allContext = createContext(null)
+export const AllContext = createContext(null)
 
-const AllContext = ({ children }) => {
+const AllProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const axiosSecure = useAxiosSecure()
 
     // Cart page API States
     const [cartItems, setCartItems] = useState([])
@@ -24,18 +23,23 @@ const AllContext = ({ children }) => {
 
 
     const userSignUp = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const userUpdateOnSignUp = (userInfo) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, userInfo)
     }
     const userSignIn = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
     const userSignInWithPopup = (provider) => {
+        setLoading(true);
         return signInWithPopup(auth, provider)
     }
     const userLogOut = () => {
+        setLoading(true);
         return signOut(auth)
     }
 
@@ -49,14 +53,14 @@ const AllContext = ({ children }) => {
             const userEmail = currentUser?.email || user?.email;
             // set a token for this user 
             if (currentUser) {
-                axiosSecure.post('/jwt', { email: userEmail })
+                axios.post('https://air-tools-server.vercel.app/jwt', { email: userEmail }, { withCredentials: true })
                     .then(res => {
                         console.log('Token set : ', res.data)
                     })
             }// set a token for this user end
             //remove token if user logout
             else {
-                axiosSecure.post('/logout', { email: userEmail })
+                axios.post('https://air-tools-server.vercel.app/logout', { email: userEmail }, { withCredentials: true })
                     .then(res => {
                         console.log('Token removed', res.data)
                     })
@@ -75,16 +79,13 @@ const AllContext = ({ children }) => {
     const userEmail = user?.email;
     useEffect(() => {
 
-        // fetch(`https://air-tools-server.vercel.app/carditems/${userEmail}`, { credentials: 'include' })
-        //     .then(res => res.json())
-        //     .then(loadedCartItems => setCartItems(loadedCartItems))
+        if (userEmail) {
+            fetch(`https://air-tools-server.vercel.app/carditems/${userEmail}`, { credentials: 'include' })
+                .then(res => res.json())
+                .then(loadedCartItems => setCartItems(loadedCartItems))
+        }
 
-        axiosSecure.get(`/carditems/${userEmail}`)
-            .then(res => {
-                setCartItems(res.data)
-            })
-
-    }, [cartItemAdded, handleRemoveItem, userEmail, axiosSecure])
+    }, [cartItemAdded, handleRemoveItem, userEmail])
     // card page API call End
 
 
@@ -108,16 +109,16 @@ const AllContext = ({ children }) => {
     }
     return (
         <>
-            <allContext.Provider value={allContexts}>
+            <AllContext.Provider value={allContexts}>
                 {children}
-            </allContext.Provider>
+            </AllContext.Provider>
         </>
     );
 };
 
-export default AllContext;
+export default AllProvider;
 
-AllContext.propTypes = {
+AllProvider.propTypes = {
     children: PropTypes.node
 };
 

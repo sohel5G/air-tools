@@ -8,7 +8,6 @@ import four from "../../assets/img/4.jpg";
 // import Slider_old_file from "./Slider_old_file";
 
 const Home = () => {
-
     const brands = useLoaderData()
 
     return (

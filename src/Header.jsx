@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "./assets/img/logo.png";
 import whitelogo from "./assets/img/whitelogo.png";
-import { allContext } from "./allContext/AllContext";
+import { AllContext } from "./allContext/AllContext";
 import PropTypes from 'prop-types';
 import { MdDarkMode } from 'react-icons/md';
 import { MdLightMode } from 'react-icons/md';
@@ -72,7 +72,7 @@ const Header = ({ switchTheme, theme }) => {
     }, []);
 
     const navigate = useNavigate()
-    const { user, userLogOut } = useContext(allContext);
+    const { user, userLogOut } = useContext(AllContext);
 
     const handleLogOut = () => {
         userLogOut()

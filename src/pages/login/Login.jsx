@@ -5,7 +5,7 @@ import {
 } from "@material-tailwind/react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { allContext } from "../../allContext/AllContext";
+import { AllContext } from "../../allContext/AllContext";
 import { GoogleAuthProvider } from "firebase/auth";
 import { toast } from 'react-toastify';
 import { FaGoogle } from 'react-icons/fa';
@@ -13,7 +13,7 @@ import { FaGoogle } from 'react-icons/fa';
 const gooleProvider = new GoogleAuthProvider();
 
 const Login = () => {
-    const { userSignIn, userSignInWithPopup } = useContext(allContext);
+    const { userSignIn, userSignInWithPopup } = useContext(AllContext);
     const navigate = useNavigate();
 
     const handleLogin = event => {

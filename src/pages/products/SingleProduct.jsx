@@ -2,12 +2,12 @@ import { useLoaderData } from "react-router-dom";
 import { Rating } from "@material-tailwind/react";
 import { toast } from 'react-toastify';
 import { useContext } from "react";
-import { allContext } from "../../allContext/AllContext";
+import { AllContext } from "../../allContext/AllContext";
 
 const SingleProduct = () => {
     const product = useLoaderData();
 
-    const { setCartItemAdded, user } = useContext(allContext);
+    const { setCartItemAdded, user } = useContext(AllContext);
 
     const userEmail = user?.email;
 

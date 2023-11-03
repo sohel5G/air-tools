@@ -2,12 +2,12 @@
 import { Card, Input, Checkbox, Typography } from "@material-tailwind/react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { allContext } from "../../allContext/AllContext";
+import { AllContext } from "../../allContext/AllContext";
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const { userSignUp, userUpdateOnSignUp, setUser } = useContext(allContext);
+    const { userSignUp, userUpdateOnSignUp, setUser } = useContext(AllContext);
 
     const handleUserSignUp = event => {
         event.preventDefault()

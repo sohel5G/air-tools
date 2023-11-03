@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
-import { allContext } from '../../allContext/AllContext';
+import { AllContext } from '../../allContext/AllContext';
 
 const CartPageCard = ({ product, cartItems }) => {
-    const { setCartItems, user, setHandleRemoveItem } = useContext(allContext);
+    const { setCartItems, user, setHandleRemoveItem } = useContext(AllContext);
 
     const userEmail = user?.email;
 

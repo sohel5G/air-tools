@@ -1,11 +1,11 @@
 import { Link} from "react-router-dom";
 import CartPageCard from "./cartPageCard";
 import { useContext} from "react";
-import { allContext } from "../../allContext/AllContext";
+import { AllContext } from "../../allContext/AllContext";
 
 const CartPage = () => {
 
-    const { cartItems} = useContext(allContext);
+    const { cartItems } = useContext(AllContext);
 
     return (
         <>

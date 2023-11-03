@@ -4,13 +4,14 @@ import './index.css';
 import './style.css'
 import { RouterProvider } from "react-router-dom";
 import router from './Routes';
-import AllContext from './allContext/AllContext';
+import AllProvider from './allContext/AllContext';
+// import AllContext from './allContext/AllContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AllContext>
+    <AllProvider>
       <RouterProvider router={router} />
-    </AllContext>
+    </AllProvider>
   </React.StrictMode>,
 )
 

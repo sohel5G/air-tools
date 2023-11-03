@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { FiShoppingCart } from 'react-icons/fi';
-import { allContext } from '../../allContext/AllContext';
+import { AllContext } from '../../allContext/AllContext';
 
 const CartWidget = () => {
 
-    const { cartItems } = useContext(allContext);
+    const { cartItems } = useContext(AllContext);
 
     let sum = 0;
     if (cartItems.length > 0){    
