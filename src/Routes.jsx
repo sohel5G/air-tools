@@ -24,7 +24,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/brands')
+                loader: () => fetch('https://air-tools-server.vercel.app/brands')
             },
             {
                 path: '/addproduct',
@@ -33,27 +33,27 @@ const router = createBrowserRouter([
             {
                 path: '/brand/:brandName',
                 element: <BrandProducts></BrandProducts>,
-                loader: ({ params }) => fetch(`http://localhost:5000/brands/${params.brandName}`)
+                loader: ({ params }) => fetch(`https://air-tools-server.vercel.app/brands/${params.brandName}`)
             },
             {
                 path: '/product/update/:id',
                 element: <PrivateRoute> <ProductUpdate></ProductUpdate> </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://air-tools-server.vercel.app/products/${params.id}`)
             },
             {
                 path: '/product/:id',
                 element: <PrivateRoute> <SingleProduct></SingleProduct> </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://air-tools-server.vercel.app/products/${params.id}`)
             },
             {
                 path: '/cart',
                 element: <PrivateRoute> <CartPage></CartPage> </PrivateRoute>
-                // loader: () => fetch('http://localhost:5000/carditems')
+                // loader: () => fetch('https://air-tools-server.vercel.app/carditems')
             },
             {
                 path: '/products',
                 element: <Products></Products>,
-                loader: () => fetch('http://localhost:5000/products')
+                loader: () => fetch('https://air-tools-server.vercel.app/products')
             },
             {
                 path: '/register',

@@ -75,7 +75,7 @@ const AllContext = ({ children }) => {
     const userEmail = user?.email;
     useEffect(() => {
 
-        // fetch(`http://localhost:5000/carditems/${userEmail}`, { credentials: 'include' })
+        // fetch(`https://air-tools-server.vercel.app/carditems/${userEmail}`, { credentials: 'include' })
         //     .then(res => res.json())
         //     .then(loadedCartItems => setCartItems(loadedCartItems))
 

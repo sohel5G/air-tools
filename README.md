@@ -44,7 +44,7 @@ Live link > [https://air-tools-coderloft.web.app/](https://air-tools-coderloft.w
 // set a token for this user 
 const userEmail = currentUser?.email || user?.email;
 if (currentUser) {
-    axios.post('http://localhost:5000/jwt', { email: userEmail }, { withCredentials: true })
+    axios.post('https://air-tools-server.vercel.app/jwt', { email: userEmail }, { withCredentials: true })
         .then(res => {
             console.log('Token created : ', res.data)
         })
@@ -99,7 +99,7 @@ app.post('/logout', async (req, res) => {
 ```JavaScript
 // // Remove cookie from browser if user logout
 else {
-    axios.post('http://localhost:5000/logout', { email: userEmail }, { withCredentials: true })
+    axios.post('https://air-tools-server.vercel.app/logout', { email: userEmail }, { withCredentials: true })
         .then(res => {
             console.log('Token removed', res.data)
         })
@@ -176,7 +176,7 @@ app.get('/carditems/:userEmail', verifyToken, async (req, res) => {
 ```JavaScript
 // Custom hooks
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://air-tools-server.vercel.app',
     withCredentials: true
 })
 const useAxiosSecure = () => {

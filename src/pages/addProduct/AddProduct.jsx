@@ -18,7 +18,7 @@ const AddProduct = () => {
         const product = { name, brand, type, price, ratting, productImgURL, description };
 
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://air-tools-server.vercel.app/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

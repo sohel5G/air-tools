@@ -9,7 +9,7 @@ const CartPageCard = ({ product, cartItems }) => {
     const userEmail = user?.email;
 
     const handleRemoveItem = (userEmail, productid) => {
-        fetch(`http://localhost:5000/carditems/${userEmail}?productid=${productid}`, {
+        fetch(`https://air-tools-server.vercel.app/carditems/${userEmail}?productid=${productid}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
