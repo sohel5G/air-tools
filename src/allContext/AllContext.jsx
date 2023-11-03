@@ -2,13 +2,15 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../authConfig/authConfig";
-import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export const allContext = createContext(null)
 
 const AllContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const axiosSecure = useAxiosSecure()
 
     // Cart page API States
     const [cartItems, setCartItems] = useState([])
@@ -47,14 +49,14 @@ const AllContext = ({ children }) => {
             const userEmail = currentUser?.email || user?.email;
             // set a token for this user 
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', { email: userEmail }, { withCredentials: true })
+                axiosSecure.post('/jwt', { email: userEmail })
                     .then(res => {
                         console.log('Token set : ', res.data)
                     })
             }// set a token for this user end
             //remove token if user logout
             else {
-                axios.post('http://localhost:5000/logout', { email: userEmail }, { withCredentials: true })
+                axiosSecure.post('/logout', { email: userEmail })
                     .then(res => {
                         console.log('Token removed', res.data)
                     })
@@ -68,16 +70,24 @@ const AllContext = ({ children }) => {
     }, []);
 
 
+
     // card page API call
     const userEmail = user?.email;
     useEffect(() => {
 
-        fetch(`http://localhost:5000/carditems/${userEmail}`, { credentials: 'include' })
-            .then(res => res.json())
-            .then(loadedCartItems => setCartItems(loadedCartItems))
+        // fetch(`http://localhost:5000/carditems/${userEmail}`, { credentials: 'include' })
+        //     .then(res => res.json())
+        //     .then(loadedCartItems => setCartItems(loadedCartItems))
 
-    }, [cartItemAdded, handleRemoveItem, userEmail])
+        axiosSecure.get(`/carditems/${userEmail}`)
+            .then(res => {
+                setCartItems(res.data)
+            })
+
+    }, [cartItemAdded, handleRemoveItem, userEmail, axiosSecure])
     // card page API call End
+
+
 
 
 
