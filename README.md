@@ -1,37 +1,38 @@
+## Aircraft Engineering Tools - E-Commerce Website Overview
 
-Live link > [https://air-tools-coderloft.web.app/](https://air-tools-coderloft.web.app/)
+#### Live link > [https://air-tools-coderloft.web.app/](https://air-tools-coderloft.web.app/)
 
-### Some great feature of this online store : 
+### Project Description:
+Aircraft Engineering Tools is an advanced e-commerce platform tailored specifically for the aviation industry. The platform offers a range of features designed to streamline the purchasing process for engineering tools while prioritizing user authentication, security, and a seamless shopping experience.
 
-- Add new products
-- Updated products 
-- Add to cart (add to cart is fully functional)
-- registration page with validation 
-- Login page with validation 
-- Login with google 
-- If user not login, then can not see product details
-- All the brand showing on front page
-- When click on brand item it show all of this brand products
-- If user not login, then can not add products to cart
-- If user not login, then can not add new product
-- If user not login, then can not update existing product
+#### Product Management:
+- Admins can easily add new products to the catalog.
+- Products can be updated to ensure accurate and up-to-date information.
 
+#### Shopping Cart Functionality:
+- Fully functional "Add to Cart" feature allows users to easily compile their selected items.
+- User-friendly cart management for a smooth shopping experience.
 
-### API 
+#### User Authentication:
+- Registration page with validation ensures secure and accurate user data.
+- Login page with validation for enhanced security.
 
-- every person get a access token 
-- every person get a refresh token 
-- if access token expire then auto create a access token again using by the fresh token
-- if refresh token can not create a access token then logout the user
+#### Login Options:
+- Users have the option to log in using traditional credentials.
+- Login with Google functionality for added convenience.
 
+#### Access Restrictions:
+- Product details are only accessible to logged-in users.
+- Certain actions, such as adding products to the cart or managing product information, require user authentication.
 
+#### Brand Showcase:
+- The front page showcases all available brands for easy navigation.
+- Clicking on a brand item reveals all products associated with that brand.
 
-### Technology 
+#### Security Measures:
+- JWT (JSON Web Token) is utilized for secure user authentication.
+- Access tokens are generated using jwt.sign for secure communication.
+- CORS (Cross-Origin Resource Sharing) is configured with the appropriate settings: origin URL and credentials set to true.
 
-- use JWT json web token
-- generate a token using jwt.sign
-- cors setup origin url and credentials: true
-- create API set to cookie, httpOnly: true, secure:true, sameSite: 'none'
-- from client side do : axios withCredentials: true
-
-
+#### Conclusion:
+Aircraft Engineering Tools stands as a cutting-edge e-commerce solution, ensuring a secure and efficient shopping experience for aviation professionals. With robust user authentication, seamless product management, and advanced security measures, the platform caters to the unique needs of the aircraft engineering community.
